@@ -1,0 +1,32 @@
+{
+"manifest_version":2,
+"name": "Facebook chat slang expander",
+ "short_name":"chatSlangExpander", 
+  "version": "0.1.2",
+  "description" : "expands slang in chat",
+  //"icons": { 
+ // 		   "16": "icons/icon16.png",
+ //          "48": "icons/icon48.png",
+ //          "128": "icons/icon128.png",
+ //          "256": "icons/icon256.png" 
+ //   },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.facebook.com/*"
+      ],
+	  "js" : [
+     "js/jquery.js", "js/script.js"
+    ],
+      "run_at": "document_start"
+    }
+  ],
+  "background": {
+    "scripts": ["js/background.js"]
+  },
+  "permissions": [
+		  "*://*.facebook.com/*",
+		"clipboardWrite", // for copy and cut
+		"clipboardRead" // for paste
+		]
+}
