@@ -1,3 +1,4 @@
+//TODO : double reply must be handled
 var sc = document.createElement("script");
 sc.src = "https://code.jquery.com/jquery-3.3.1.js";
 document.body.appendChild(sc);
