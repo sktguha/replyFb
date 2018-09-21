@@ -27,6 +27,8 @@ document.oncontextmenu = function(e){
         var dv = $(te).find("._18yz")[0];
         
         var repDv = document.createElement("div");
+        repDv.style = "background:rgb(246, 241, 241);" + 
+            "padding-left: 3px;";
         repDv.innerText = e.target.innerText;
         repDv.dataset.replyContent = e.target.innerText;
         var elem = e.target;
