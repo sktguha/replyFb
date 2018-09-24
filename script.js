@@ -1,6 +1,9 @@
-//var sc = document.createElement("script");
-//sc.src = "https://code.jquery.com/jquery-3.3.1.js";
-//document.body.appendChild(sc);
+//injectJq();
+function injectJq(){
+  var sc = document.createElement("script");
+  sc.src = "https://code.jquery.com/jquery-3.3.1.js";
+  document.body.appendChild(sc);
+}
 
 document.oncontextmenu = function(e){
     var pc = "._5yl5";
@@ -96,7 +99,26 @@ function intercept(body){
         }
         var mparam = paramsArr[mbd];
         var msg = mparam.split("body=")[1];
-        msg += encodeURIComponent("\n:::In Reply To:::\n" + replyDiv.dataset.replyContent);
+		var tx = replyDiv.dataset.replyContent;
+		var words = tx.replace( /\n/g, " " ).split( " " )
+		var fns = "\n| In Reply To:\n| ";
+		var limit = 15;
+		var ct = 0;
+		var breaks = 0;
+		for (var i = 0;i<words.length;i++){
+		   if(ct > limit){
+			  fns += "\n| ";
+			  ct = 0;
+			  breaks ++;
+			  if(breaks === 2){
+				  fns = fns.slice(0,-3) + "..."
+				  break;
+			  }
+		   }
+		   fns += " " + words[i];
+           ct += words[i].length;
+		}
+		msg += encodeURIComponent(fns);
         paramsArr[mbd] = "body="+msg;
         body = paramsArr.join("&");
         replyDiv.parentElement.removeChild(replyDiv);
@@ -106,7 +128,11 @@ function intercept(body){
 function registerHook(){
 (function(send) {
     XMLHttpRequest.prototype.send = function() {
-        arguments[0] = intercept(arguments[0]);        
+        try{
+		   arguments[0] = intercept(arguments[0]);	
+		} catch(e){
+			console.error(e);
+		}
 		send.apply(this, arguments);
     };
 })(XMLHttpRequest.prototype.send);
