@@ -96,7 +96,7 @@ function intercept(body){
         }
         var mparam = paramsArr[mbd];
         var msg = mparam.split("body=")[1];
-        msg += encodeURIComponent("replied to : " + replyDiv.dataset.replyContent);
+        msg += encodeURIComponent("\n:::In Reply To:::\n" + replyDiv.dataset.replyContent);
         paramsArr[mbd] = "body="+msg;
         body = paramsArr.join("&");
         replyDiv.parentElement.removeChild(replyDiv);
