@@ -4,12 +4,11 @@
  "short_name":"replyFbChat", 
   "version": "0.1.0",
   "description" : "Reply for fb chat",
-  //"icons": { 
- // 		   "16": "icons/icon16.png",
- //          "48": "icons/icon48.png",
- //          "128": "icons/icon128.png",
- //          "256": "icons/icon256.png" 
- //   },
+  "icons": { 
+  		   "16": "icons/icon16.png",
+           "128": "icons/icon128.png",
+           "256": "icons/icon256.png" 
+    },
   "content_scripts": [
     {
       "matches": [
@@ -22,11 +21,9 @@
     }
   ],
   "background": {
-    "scripts": ["js/background.js"]
+    "scripts": ["jquery.js, script.js"]
   },
   "permissions": [
 		  "*://*.facebook.com/*",
-		"clipboardWrite", // for copy and cut
-		"clipboardRead" // for paste
 		]
 }
