@@ -56,8 +56,9 @@ document.oncontextmenu = function(e){
         var cross = document.createElement("div");
         cross.innerText = "x";
         cross.className = "repCross"
-        cross.style = "color:blue;position:absolute;right:3px;top:-1px;cursor:pointer;zoom:1.4;background:rgb(246, 241, 241);" + 
-          "border-left : 2px solid rgb(246, 241, 241);";
+        cross.style = "color:black;position:absolute;right:3px;top:-1px;cursor:pointer;zoom:1.4;background:rgb(246, 241, 241);" + 
+          "border-left : 4px solid rgb(246, 241, 241);" + 
+          "border-right : 2px solid rgb(246, 241, 241);";
         cross.onclick = function(){
             repDv.parentElement.removeChild(repDv);
         }
