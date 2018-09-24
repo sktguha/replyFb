@@ -55,7 +55,8 @@ document.oncontextmenu = function(e){
         repDv.id = qid;
         var cross = document.createElement("div");
         cross.innerText = "x";
-        cross.style = "position:absolute;right:3px;top:-3px;cursor:pointer;"
+        cross.className = "repCross"
+        cross.style = "position:absolute;right:3px;top:-1px;cursor:pointer;zoom:1.3;"
         cross.onclick = function(){
             repDv.parentElement.removeChild(repDv);
         }
