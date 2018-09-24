@@ -15,15 +15,12 @@
         "*://*.facebook.com/*"
       ],
 	  "js" : [
-     "js/jquery.js", "js/script.js"
+       "jquery.js", "script.js"
     ],
-      "run_at": "document_start"
+      "run_at": "document_end"
     }
   ],
-  "background": {
-    "scripts": ["jquery.js, script.js"]
-  },
   "permissions": [
-		  "*://*.facebook.com/*",
+		  "*://*.facebook.com/*"
 		]
 }

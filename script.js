@@ -1,6 +1,6 @@
-var sc = document.createElement("script");
-sc.src = "https://code.jquery.com/jquery-3.3.1.js";
-document.body.appendChild(sc);
+//var sc = document.createElement("script");
+//sc.src = "https://code.jquery.com/jquery-3.3.1.js";
+//document.body.appendChild(sc);
 
 document.oncontextmenu = function(e){
     var pc = "._5yl5";
@@ -70,7 +70,9 @@ document.oncontextmenu = function(e){
 }
 
 
-registerHook();
+
+//----------------- portion to intercept network requests------------------
+//registerHook();
 //need to verify if using chrome.tabs.onUpdate.addListener approach is better than this
 //In future changing the requestBody data in a  "post" request using the webrequest api can be used if support is added ,
 // can intercept the network call to send.php
@@ -109,3 +111,8 @@ function registerHook(){
     };
 })(XMLHttpRequest.prototype.send);
 }
+
+var string = intercept.toString() + ";" + registerHook.toString()+"; registerHook();";
+var sc = document.createElement("script");
+sc.textContent = string;
+document.body.appendChild(sc);
