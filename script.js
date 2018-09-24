@@ -36,7 +36,9 @@ document.oncontextmenu = function(e){
         var repDv = document.createElement("div");
         repDv.style = "background:rgb(246, 241, 241);" + 
             "padding-left: 3px;border-left:3px solid blue;" 
-            + "position:relative;";
+            + "position:relative;" 
+            + "white-space: nowrap; overflow: hidden; " 
+            + "text-overflow: ellipsis;";
         repDv.innerText = e.target.innerText;
         repDv.dataset.replyContent = e.target.innerText;
         var elem = e.target;
@@ -53,7 +55,7 @@ document.oncontextmenu = function(e){
         repDv.id = qid;
         var cross = document.createElement("div");
         cross.innerText = "x";
-        cross.style = "position:absolute;right:3px;top:-1px;cursor:pointer;"
+        cross.style = "position:absolute;right:3px;top:-3px;cursor:pointer;"
         cross.onclick = function(){
             repDv.parentElement.removeChild(repDv);
         }
