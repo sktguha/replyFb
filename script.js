@@ -3,13 +3,16 @@ sc.src = "https://code.jquery.com/jquery-3.3.1.js";
 document.body.appendChild(sc);
 
 document.oncontextmenu = function(e){
-    var pc = "._5yl5";
+    var clsName = "_5yl5";
+    var pc = "."+ clsName;
     var target = e.target;
     if(target.tagName === "DIV"){
        target = $(target).children(pc)[0];   
     }
-    if(!$(e.target).parents(pc)[0]) return;
-    
+    if( !($(e.target).parents(pc)[0] || $(target).hasClass(clsName)) ) {
+    	return;
+    } 
+
     var dv = document.createElement("div");
     $(dv).text("Reply");
     dv.style = "position:absolute;z-index:10000000;" 
