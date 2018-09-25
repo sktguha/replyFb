@@ -18,7 +18,7 @@ document.oncontextmenu = function(e){
     dv.style = "position:absolute;z-index:10000000;" 
      + "padding: 4px 10px 4px 10px;background:black;color:white;cursor:pointer;";
     dv.style.left = e.clientX - 21 + "px";
-    dv.style.top = e.clientY + (273 )+ "px";
+    dv.style.top = e.clientY + (273 + 170 )+ "px";
     
     dv.dataset.srcElem = target.innerText;
     document.body.appendChild(dv);
