@@ -28,8 +28,9 @@ document.oncontextmenu = function(e){
     $(dv).text("Reply");
     dv.style = "position:absolute;z-index:10000000;"
      + "padding: 4px 10px 4px 10px;background:black;color:white;cursor:pointer;";
-    dv.style.left = e.clientX - 21 + "px";
-    dv.style.top = e.clientY + (500 )+ "px";
+    let off = $(target).offset();
+    dv.style.left = off.left + 150 + "px";//e.clientX - 21 + "px";
+    dv.style.top = off.top + "px";//e.clientY + (480 )+ "px";
 
     dv.dataset.srcElem = target.innerText;
     document.body.appendChild(dv);
