@@ -75,7 +75,7 @@ document.oncontextmenu = function(e){
         
         repDv.appendChild(cross);
         dv.prepend(repDv);
-        setTimeout(() => { mainContainer.find("._5wd4").last()[0].click(); }, 1000);
+        setTimeout(() => { mainContainer.find("._5wd4").last()[0].click(); }, 40);
     }
     return false;
 }
