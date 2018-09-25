@@ -1,9 +1,9 @@
 {
 "manifest_version":2,
-"name": "Unofficial : Reply for fb chat",
+"name": "Unofficial : Reply for facebook chat",
  "short_name":"UnofficialReplyFb", 
-  "version": "0.1.0",
-  "description" : "Unofficial : Reply for fb chat",
+  "version": "0.1.1",
+  "description" : "Unofficial : Reply for facebook chat. Right click message to reply",
   "icons": { 
   		   "16": "icons/icon16.png",
            "128": "icons/icon128.png",
