@@ -2,24 +2,35 @@ var sc = document.createElement("script");
 sc.src = "https://code.jquery.com/jquery-3.3.1.js";
 document.body.appendChild(sc);
 
+function remMenus() {
+    try {
+        $(".replyAppRightClickButton").remove();
+    } catch (e) {
+    }
+}
+
+document.body.onscroll = function(){
+    remMenus();
+}
+
 document.oncontextmenu = function(e){
     var clsName = "_5yl5";
     var pc = "."+ clsName;
     var target = e.target;
     if(target.tagName === "DIV"){
-       target = $(target).children(pc)[0];   
+       target = $(target).children(pc)[0];
     }
     if( !($(e.target).parents(pc)[0] || $(target).hasClass(clsName)) ) {
     	return;
-    } 
+    }
 
     var dv = document.createElement("div");
     $(dv).text("Reply");
-    dv.style = "position:absolute;z-index:10000000;" 
+    dv.style = "position:absolute;z-index:10000000;"
      + "padding: 4px 10px 4px 10px;background:black;color:white;cursor:pointer;";
     dv.style.left = e.clientX - 21 + "px";
     dv.style.top = e.clientY + (500 )+ "px";
-    
+
     dv.dataset.srcElem = target.innerText;
     document.body.appendChild(dv);
     dv.tabIndex = -1;
@@ -29,21 +40,23 @@ document.oncontextmenu = function(e){
         try {
            dv.parentElement.removeChild(dv);
         } catch(e){
-            
+
         }
     }
     dv.onblur = hideDv;
+    dv.className = "replyAppRightClickButton";
+    var mainContainer = $(target).parents('._4tdt').parents(".fbNubFlyoutInner");
+    mainContainer.find("._4po3").on("scroll", remMenus);
     dv.onclick = function(){
         hideDv();
-        var mainContainer = $(target).parents('._4tdt').parents(".fbNubFlyoutInner");
         var te = mainContainer.find(".fbNubFlyoutFooter")[0];
         var dv = $(te).find("._18yz")[0];
-        
+
         var repDv = document.createElement("div");
-        repDv.style = "background:rgb(246, 241, 241);" + 
-            "padding-left: 3px;border-left:3px solid blue;" 
-            + "position:relative;" 
-            + "white-space: nowrap; overflow: hidden; " 
+        repDv.style = "background:rgb(246, 241, 241);" +
+            "padding-left: 3px;border-left:3px solid blue;"
+            + "position:relative;"
+            + "white-space: nowrap; overflow: hidden; "
             + "text-overflow: ellipsis;";
         repDv.innerText = target.innerText;
         repDv.dataset.replyContent = target.innerText;
@@ -56,23 +69,23 @@ document.oncontextmenu = function(e){
           return cls.indexOf("fantaTabMain-user:")!==-1;
         });
         var userId = cls.split("fantaTabMain-user:")[1]*1;
-        
+
         var qid = "replycontentcustom" + userId;
         var oldDiv = document.getElementById(qid);
         if(oldDiv){
-          oldDiv.parentElement.removeChild(oldDiv);	
+          oldDiv.parentElement.removeChild(oldDiv);
         }
         repDv.id = qid;
         var cross = document.createElement("div");
         cross.innerText = "x";
         cross.className = "repCross"
-        cross.style = "color:black;position:absolute;right:3px;top:-1px;cursor:pointer;zoom:1.4;background:rgb(246, 241, 241);" + 
-          "border-left : 4px solid rgb(246, 241, 241);" + 
+        cross.style = "color:black;position:absolute;right:3px;top:-1px;cursor:pointer;zoom:1.4;background:rgb(246, 241, 241);" +
+          "border-left : 4px solid rgb(246, 241, 241);" +
           "border-right : 2px solid rgb(246, 241, 241);";
         cross.onclick = function(){
             repDv.parentElement.removeChild(repDv);
         }
-        
+
         repDv.appendChild(cross);
         dv.prepend(repDv);
         setTimeout(() => { mainContainer.find("._5wd4").last()[0].click(); }, 40);
@@ -142,7 +155,7 @@ function registerHook(){
 (function(send) {
     XMLHttpRequest.prototype.send = function() {
         try{
-		   arguments[0] = intercept(arguments[0]);	
+		   arguments[0] = intercept(arguments[0]);
 		} catch(e){
 			console.error(e);
 		}
@@ -151,7 +164,9 @@ function registerHook(){
 })(XMLHttpRequest.prototype.send);
 }
 
-var string = intercept.toString() + ";" + registerHook.toString()+"; registerHook();";
+var string = intercept.toString() + ";" + registerHook.toString()+"; registerHook();"
+    // + 'document.body.onscroll = function(){$(".replyAppRightClickButton").remove();}';
+;
 var sc = document.createElement("script");
 sc.textContent = string;
 document.body.appendChild(sc);
