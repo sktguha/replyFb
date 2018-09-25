@@ -4,10 +4,12 @@ document.body.appendChild(sc);
 
 document.oncontextmenu = function(e){
     var pc = "._5yl5";
-    
-//     if(e.target.tagName !== "SPAN") return;
-//     if(e.target.)
+    var target = e.target;
+    if(target.tagName === "DIV"){
+       target = $(target).children(pc)[0];   
+    }
     if(!$(e.target).parents(pc)[0]) return;
+    
     var dv = document.createElement("div");
     $(dv).text("Reply");
     dv.style = "position:absolute;z-index:10000000;" 
@@ -15,7 +17,7 @@ document.oncontextmenu = function(e){
     dv.style.left = e.clientX - 21 + "px";
     dv.style.top = e.clientY + (319 - 156 )+ "px";
     
-    dv.dataset.srcElem = e.target.innerText;
+    dv.dataset.srcElem = target.innerText;
     document.body.appendChild(dv);
     dv.tabIndex = -1;
     dv.focus();
@@ -30,7 +32,7 @@ document.oncontextmenu = function(e){
     dv.onblur = hideDv;
     dv.onclick = function(){
         hideDv();
-        var te = $(e.target).parents('._4tdt').parents(".fbNubFlyoutInner").find(".fbNubFlyoutFooter")[0];
+        var te = $(target).parents('._4tdt').parents(".fbNubFlyoutInner").find(".fbNubFlyoutFooter")[0];
         var dv = $(te).find("._18yz")[0];
         
         var repDv = document.createElement("div");
@@ -39,9 +41,9 @@ document.oncontextmenu = function(e){
             + "position:relative;" 
             + "white-space: nowrap; overflow: hidden; " 
             + "text-overflow: ellipsis;";
-        repDv.innerText = e.target.innerText;
-        repDv.dataset.replyContent = e.target.innerText;
-        var elem = e.target;
+        repDv.innerText = target.innerText;
+        repDv.dataset.replyContent = target.innerText;
+        var elem = target;
         do{
           elem = elem.parentElement;
         } while ( elem && elem.className.indexOf("fantaTabMain-user") === -1);
