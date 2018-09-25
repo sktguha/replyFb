@@ -35,7 +35,8 @@ document.oncontextmenu = function(e){
     dv.onblur = hideDv;
     dv.onclick = function(){
         hideDv();
-        var te = $(target).parents('._4tdt').parents(".fbNubFlyoutInner").find(".fbNubFlyoutFooter")[0];
+        var mainContainer = $(target).parents('._4tdt').parents(".fbNubFlyoutInner");
+        var te = mainContainer.find(".fbNubFlyoutFooter")[0];
         var dv = $(te).find("._18yz")[0];
         
         var repDv = document.createElement("div");
@@ -129,7 +130,11 @@ function intercept(body){
 		msg += encodeURIComponent(fns);
         paramsArr[mbd] = "body="+msg;
         body = paramsArr.join("&");
-        replyDiv.parentElement.removeChild(replyDiv);
+		setTimeout(function(){
+			var lastmsg = $(replyDiv).parents(".fbNubFlyoutInner").find("._5yl5").last()[0];
+			lastmsg.innerText = decodeURIComponent(msg);
+			replyDiv.parentElement.removeChild(replyDiv);
+		}, 400);
     }
     return body;
 }
