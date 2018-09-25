@@ -57,6 +57,10 @@ document.oncontextmenu = function(e){
         var userId = cls.split("fantaTabMain-user:")[1]*1;
         
         var qid = "replycontentcustom" + userId;
+        var oldDiv = document.getElementById(qid);
+        if(oldDiv){
+          oldDiv.parentElement.removeChild(oldDiv);	
+        }
         repDv.id = qid;
         var cross = document.createElement("div");
         cross.innerText = "x";
@@ -70,6 +74,7 @@ document.oncontextmenu = function(e){
         
         repDv.appendChild(cross);
         dv.prepend(repDv);
+        setTimeout(() => { te.focus(); console.log("focussed");}, 1000);
     }
     return false;
 }
